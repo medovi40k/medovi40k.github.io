@@ -1,0 +1,132 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, #001a1a, #000000);
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+/* Убираем старые звезды и создаем эффект "падающих" звезд */
+canvas {
+    display: none; /* Убираем звезды на канвасе */
+}
+
+/* Эффект милых звезд */
+.star {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    opacity: 0.8;
+    animation: flake 10s linear infinite;
+}
+
+@keyframes flake {
+    0% {
+        transform: translateY(-100vh);
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0.5;
+    }
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.1; }
+    100% { opacity: 0.3; }
+}
+
+
+.center-text {
+    position: absolute;
+    z-index: 1;
+}
+
+h1 {
+text-align: center;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.button-container {
+    margin-top: 20px;
+}
+
+#typed-text {
+    font-family: 'Courier New', Courier, monospace;
+    color: #00ff00; /* Ярко-зеленый, как в хакерских терминалах */
+    text-shadow: 0 0 5px #00ff00;
+    font-size: 2em;
+    animation: glitch 1s infinite alternate;
+    text-align: center;
+    width: 100%;
+}
+
+/* Эффекты для кнопок */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: rgba(0, 255, 0, 0.1);
+    color: #00ff00;
+    text-decoration: none;
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 5px;
+    transition: background-color 0.3s, border-color 0.3s, transform 0.3s;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.button:hover {
+    background-color: rgba(0, 255, 0, 0.3);
+    border-color: rgba(0, 255, 0, 0.6);
+    transform: scale(1.05); /* Эффект увеличения */
+}
+
+/* Дополнительная анимация мерцания текста */
+@keyframes glitch {
+    0% { text-shadow: 1px 1px #007600; }
+    50% { text-shadow: 2px 3px #007600; }
+    100% { text-shadow: 1px 1px #007600; }
+}
+
+
+#subtext {
+    font-family: 'Courier New', Courier, monospace;
+    color: #00ff00;
+    text-shadow: 0 0 5px #00ff00;
+    font-size: 1.5em;
+    transition: opacity 2s ease-in-out;
+    opacity: 0;
+    margin-top: 10px;
+    text-align: center; /* Центрируем текст */
+    width: 100%; /* Занимаем всю ширину родителя */
+}
+
+
+.button-container {
+    margin-top: 20px;
+    transition: opacity 2s ease-in-out;
+    opacity: 0;
+}
+
+.fade-in {
+    opacity: 1;
+}

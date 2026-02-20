@@ -1,111 +1,141 @@
-// script.js
-const canvas = document.getElementById('stars');
-const ctx = canvas.getContext('2d');
-let stars = [];
-const numStars = 166;
-const mouse = {
-    x: null,
-    y: null
-};
+(() => {
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-function setCanvasSize() {
-    canvas.width = window.innerWidth * window.devicePixelRatio;
-    canvas.height = window.innerHeight * window.devicePixelRatio;
-    canvas.style.width = `${window.innerWidth}px`;
-    canvas.style.height = `${window.innerHeight}px`;
-    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-}
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-function createStars() {
-    stars = [];
-    for (let i = 0; i < numStars; i++) {
-        stars.push(new Star());
-    }
-}
+  // Typewriter
+  const target = document.getElementById("typedName");
+  const fullText = "Daniil Medov";
 
-function Star() {
-    this.x = Math.random() * canvas.width;
-    this.y = Math.random() * canvas.height;
-    this.size = Math.random() * 1.5 + 3;
-    this.speedX = Math.random() * 0.6 - 0.3;
-    this.speedY = Math.random() * 0.6 - 0.3;
+  function finishLoad() {
+    document.body.classList.add("loaded");
+  }
 
-    this.draw = function() {
-        let gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
-        gradient.addColorStop(0, 'white');
-        gradient.addColorStop(0.1, 'rgba(255, 255, 255, 0.8)');
-        gradient.addColorStop(0.3, 'rgba(255, 255, 255, 0.6)');
-        gradient.addColorStop(0.8, 'rgba(255, 255, 255, 0.2)');
-        gradient.addColorStop(1, 'transparent');
-        ctx.fillStyle = gradient;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
+  function typeText() {
+    if (!target) {
+      finishLoad();
+      return;
     }
 
-    this.update = function() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        if (this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
-        if (this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
-
-        this.draw();
+    if (prefersReduced) {
+      target.textContent = fullText;
+      finishLoad();
+      return;
     }
-}
 
-function connectStars() {
-    for (let i = 0; i < stars.length; i++) {
-        for (let j = i; j < stars.length; j++) {
-            const dx = stars[i].x - stars[j].x;
-            const dy = stars[i].y - stars[j].y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
+    let i = 0;
+    const step = () => {
+      target.textContent = fullText.slice(0, i);
+      i++;
+      if (i <= fullText.length) {
+        setTimeout(step, 42);
+      } else {
+        // small pause then reveal
+        setTimeout(finishLoad, 120);
+      }
+    };
+    step();
+  }
 
-            if (distance < 100) {
-                ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-                ctx.moveTo(stars[i].x, stars[i].y);
-                ctx.lineTo(stars[j].x, stars[j].y);
-                ctx.stroke();
-            }
+  typeText();
 
-            if (mouse.x && distance < 100) {
-                const dxMouse = stars[i].x - mouse.x;
-                const dyMouse = stars[i].y - mouse.y;
-                const mouseDistance = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
-                
-                if (mouseDistance < 100) {
-                    ctx.strokeStyle = 'rgba(32, 194, 14, 0.4)';
-                    ctx.beginPath();
-                    ctx.moveTo(stars[i].x, stars[i].y);
-                    ctx.lineTo(mouse.x, mouse.y);
-                    ctx.stroke();
-                }
-            }
+  // Background particles (subtle)
+  const canvas = document.getElementById("bg");
+  const ctx = canvas?.getContext("2d");
+  if (!canvas || !ctx) return;
+
+  let w = 0, h = 0, dpr = 1;
+  let particles = [];
+  const mouse = { x: null, y: null };
+  const baseCount = 85;
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = Math.floor(window.innerWidth);
+    h = Math.floor(window.innerHeight);
+
+    canvas.width = Math.floor(w * dpr);
+    canvas.height = Math.floor(h * dpr);
+    canvas.style.width = w + "px";
+    canvas.style.height = h + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const count = Math.max(55, Math.floor(baseCount * (w / 900)));
+    particles = Array.from({ length: count }, () => makeParticle(true));
+  }
+
+  function makeParticle(randomY = false) {
+    return {
+      x: Math.random() * w,
+      y: randomY ? Math.random() * h : -10,
+      r: 1 + Math.random() * 2.2,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: 0.25 + Math.random() * 0.55,
+      a: 0.20 + Math.random() * 0.35
+    };
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+
+    // soft haze
+    const g = ctx.createRadialGradient(w * 0.2, h * 0.15, 0, w * 0.2, h * 0.15, Math.max(w, h) * 0.6);
+    g.addColorStop(0, "rgba(124, 92, 255, 0.08)");
+    g.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, w, h);
+
+    for (const p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.y > h + 20) {
+        p.y = -20;
+        p.x = Math.random() * w;
+      }
+      if (p.x < -20) p.x = w + 20;
+      if (p.x > w + 20) p.x = -20;
+
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(255,255,255,${p.a})`;
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // connections near mouse
+    if (!prefersReduced && mouse.x !== null && mouse.y !== null) {
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        const dist = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+        if (dist < 140) {
+          const alpha = (1 - dist / 140) * 0.10;
+          ctx.strokeStyle = `rgba(124, 92, 255, ${alpha})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.stroke();
         }
+      }
     }
-}
 
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    stars.forEach(star => {
-        star.update();
-    });
-    connectStars();
-    requestAnimationFrame(animate);
-}
+    requestAnimationFrame(draw);
+  }
 
-setCanvasSize();
-createStars();
-animate();
-
-window.addEventListener('resize', () => {
-    setCanvasSize();
-    createStars();
-});
-
-canvas.addEventListener('mousemove', (e) => {
+  function onMove(e) {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
-});
+  }
+  function onLeave() {
+    mouse.x = null;
+    mouse.y = null;
+  }
+
+  window.addEventListener("resize", resize);
+  window.addEventListener("mousemove", onMove, { passive: true });
+  window.addEventListener("mouseleave", onLeave);
+
+  resize();
+  if (!prefersReduced) draw();
+})();

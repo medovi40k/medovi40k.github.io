@@ -1,70 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEDOFF</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MEDOFF / medovi40k — Daniil Medov</title>
+  <meta name="description" content="Daniil Medov (medovi40k) — software developer. Projects, links, and skills." />
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-    <div class="center-text">
-        <h1><span id="typed-text"></span></h1>
-        <h2 id="subtext" style="opacity: 0;">My links</h2>
-        <div class="button-container" style="opacity: 0;">
-            <a href="https://t.me/medovi40k" class="button">Contact Me (telegram)</a>
-            <a href="https://t.me/azatian_shop" class="button">AZ Shop (sneakers shop)</a>
-	    <a href="https://t.me/engstudyeasily" class="button">Easy Peasy English (обучающий проект)</a>
-	    <a href="https://github.com/medovi40k" class="button">Github</a>
-            
+  <canvas id="bg"></canvas>
+
+  <main class="wrap">
+    <header class="header reveal">
+      <div class="badge">MEDOFF / medovi40k</div>
+
+      <h1 class="title">
+        <span class="title-name" id="typedName" aria-label="Daniil Medov"></span>
+        <span class="caret" aria-hidden="true"></span>
+      </h1>
+
+      <div class="handle">@medovi40k</div>
+
+      <p class="subtitle">
+        Python-first developer • Linux power user • Automation • APIs
+      </p>
+
+      <div class="links reveal-delay-1">
+        <a class="btn primary" href="https://t.me/medovi40k" target="_blank" rel="noreferrer">
+          Contact (Telegram)
+        </a>
+        <a class="btn" href="https://t.me/ave_shop" target="_blank" rel="noreferrer">
+          AVE Shop
+        </a>
+        <a class="btn" href="https://github.com/medovi40k" target="_blank" rel="noreferrer">
+          GitHub
+        </a>
+        <a class="btn ghost" href="https://myodov.ru" target="_blank" rel="noreferrer">
+          Website
+        </a>
+      </div>
+    </header>
+
+    <section class="card reveal reveal-delay-2">
+      <h2>About</h2>
+      <p>
+        I’m a software developer with hands-on experience since 2021.
+        My main language is <strong>Python</strong> — I use it for automation, tooling, backend tasks,
+        and building practical apps. I’m also confident in <strong>Linux</strong> environments:
+        I can set up systems, work comfortably in terminal, and troubleshoot issues efficiently.
+      </p>
+
+      <div class="grid">
+        <div class="mini">
+          <h3>Focus</h3>
+          <ul>
+            <li>Clean, maintainable engineering</li>
+            <li>Automation, bots, internal tools</li>
+            <li>Backend logic, APIs, integrations</li>
+            <li>Performance & fundamentals</li>
+          </ul>
         </div>
-    </div>
 
-    <script>
-    function createStar() {
-        const star = document.createElement("div");
-        star.classList.add("star");
-        star.style.left = `${Math.random() * 100}vw`;
-        star.style.animationDuration = `${5 + Math.random() * 5}s`;  // Разное время падения
-        document.body.appendChild(star);
+        <div class="mini">
+          <h3>Strengths</h3>
+          <ul>
+            <li>Analytical thinking & fast learning</li>
+            <li>Problem solving under time pressure</li>
+            <li>Comfortable with debugging and profiling</li>
+            <li>Shipping projects end-to-end</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-        setTimeout(() => {
-            star.remove();  // Удаляем звезду после завершения анимации
-        }, 10000);
-    }
+    <section class="card reveal reveal-delay-3">
+      <h2>Skills</h2>
 
-    setInterval(createStar, 200);  // Каждые полсекунды создаем новую звезду
-</script>
-    <script src="script.jss"></script>
-    <script>
-        const text = "medovi40k";
-        let index = 0;
-        const speed = 100;
+      <div class="chips" role="list">
+        <span class="chip strong" role="listitem">Python (main)</span>
+        <span class="chip" role="listitem">Linux (confident)</span>
+        <span class="chip" role="listitem">Bash scripting</span>
+        <span class="chip" role="listitem">Git / GitHub</span>
 
-        function typeWriter() {
-            if (index < text.length) {
-                document.getElementById("typed-text").textContent += text.charAt(index);
-                index++;
-                setTimeout(typeWriter, speed);
-            } else {
-                setTimeout(showSubText, 500);
-            }
-        }
+        <span class="chip" role="listitem">C++ (fundamentals + practice)</span>
+        <span class="chip" role="listitem">Algorithms & data structures</span>
 
-        function showSubText() {
-            const subtext = document.getElementById("subtext");
-            subtext.style.opacity = 1;
-            subtext.classList.add("fade-in");
-            setTimeout(showButtons, 1000);
-        }
+        <span class="chip" role="listitem">Web: HTML / CSS / JS</span>
+        <span class="chip" role="listitem">REST APIs</span>
+        <span class="chip" role="listitem">SQL basics</span>
 
-        function showButtons() {
-            const buttons = document.querySelector(".button-container");
-            buttons.style.opacity = 1;
-            buttons.classList.add("fade-in");
-        }
+        <span class="chip" role="listitem">Automation & parsers</span>
+        <span class="chip" role="listitem">Telegram bots</span>
+        <span class="chip" role="listitem">CLI tools</span>
 
-        window.onload = function() {
-            typeWriter();
-        };
-    </script>
+        <span class="chip" role="listitem">Docker (basic)</span>
+        <span class="chip" role="listitem">Cybersecurity tooling (labs)</span>
+
+        <span class="chip" role="listitem">English / Russian</span>
+        <span class="chip" role="listitem">DaVinci Resolve (basic)</span>
+      </div>
+
+      <div class="note">
+        <span class="dot"></span>
+        <span>Open-source projects and examples are available on my GitHub.</span>
+      </div>
+    </section>
+
+    <section class="card reveal reveal-delay-4">
+      <h2>Certification</h2>
+      <div class="cert">
+        <div class="cert-left">
+          <div class="cert-title">Building with Claude API</div>
+          <div class="cert-sub">Anthropic • Online</div>
+        </div>
+        <p class="cert-desc">
+          API usage, advanced prompting, tool integration, workflow patterns,
+          and building AI-powered features (including RAG and multimodal processing).
+        </p>
+      </div>
+    </section>
+
+    <footer class="footer reveal reveal-delay-5">
+      <span>© <span id="year"></span> Daniil Medov</span>
+      <span class="dot-mid">•</span>
+      <span class="muted">MEDOFF / medovi40k</span>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
 </body>
+</html>

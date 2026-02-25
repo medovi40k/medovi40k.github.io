@@ -13,7 +13,16 @@
 
   <main class="wrap">
     <header class="header reveal">
-      <div class="badge">MEDOFF / medovi40k</div>
+      <div class="top-row">
+        <div class="badge">MEDOFF / medovi40k</div>
+
+        <!-- Slider language switch -->
+        <div class="lang-switch" role="group" aria-label="Language switch">
+          <button class="lang-opt" type="button" data-lang="en">EN</button>
+          <button class="lang-opt" type="button" data-lang="ru">RU</button>
+          <span class="lang-pill" aria-hidden="true"></span>
+        </div>
+      </div>
 
       <h1 class="title">
         <span class="title-name" id="typedName" aria-label="Daniil Medov"></span>
@@ -22,101 +31,103 @@
 
       <div class="handle">@medovi40k</div>
 
-      <p class="subtitle">
-        Python-first developer • Linux power user • Automation • APIs
+      <p class="subtitle" data-i18n="subtitle">
+        Python-first developer • Linux power user • Web & automation
       </p>
 
       <div class="links reveal-delay-1">
-        <a class="btn primary" href="https://t.me/medovi40k" target="_blank" rel="noreferrer">
+        <a class="btn primary" href="https://t.me/medovi40k" target="_blank" rel="noreferrer" data-i18n="btn_contact">
           Contact (Telegram)
         </a>
-        <a class="btn" href="https://t.me/ave_shop" target="_blank" rel="noreferrer">
-          AVE Shop
+        <a class="btn" href="https://t.me/azatian_shop" target="_blank" rel="noreferrer" data-i18n="btn_shop">
+          AZ Shop
+        </a>
+        <a class="btn" href="https://t.me/engstudyeasily" target="_blank" rel="noreferrer" data-i18n="btn_english">
+          Easy Peasy English
         </a>
         <a class="btn" href="https://github.com/medovi40k" target="_blank" rel="noreferrer">
           GitHub
         </a>
-        <a class="btn ghost" href="https://myodov.ru" target="_blank" rel="noreferrer">
+        <a class="btn ghost" href="https://myodov.ru" target="_blank" rel="noreferrer" data-i18n="btn_website">
           Website
         </a>
       </div>
     </header>
 
     <section class="card reveal reveal-delay-2">
-      <h2>About</h2>
-      <p>
-        I’m a software developer with hands-on experience since 2021.
-        My main language is <strong>Python</strong> — I use it for automation, tooling, backend tasks,
-        and building practical apps. I’m also confident in <strong>Linux</strong> environments:
-        I can set up systems, work comfortably in terminal, and troubleshoot issues efficiently.
+      <h2 data-i18n="about_title">About</h2>
+      <p data-i18n="about_text">
+        I’m a software developer with hands-on experience since 2021. My main language is Python — I use it for automation,
+        tooling, backend tasks, and building practical apps. I’m also confident in Linux environments: I can set up systems,
+        work comfortably in terminal, and troubleshoot issues efficiently.
       </p>
 
       <div class="grid">
         <div class="mini">
-          <h3>Focus</h3>
+          <h3 data-i18n="focus_title">Focus</h3>
           <ul>
-            <li>Clean, maintainable engineering</li>
-            <li>Automation, bots, internal tools</li>
-            <li>Backend logic, APIs, integrations</li>
-            <li>Performance & fundamentals</li>
+            <li data-i18n="focus_1">Clean, maintainable engineering</li>
+            <li data-i18n="focus_2">Automation, bots, internal tools</li>
+            <li data-i18n="focus_3">Backend logic, APIs, integrations</li>
+            <li data-i18n="focus_4">Performance & fundamentals</li>
           </ul>
         </div>
 
         <div class="mini">
-          <h3>Strengths</h3>
+          <h3 data-i18n="strengths_title">Strengths</h3>
           <ul>
-            <li>Analytical thinking & fast learning</li>
-            <li>Problem solving under time pressure</li>
-            <li>Comfortable with debugging and profiling</li>
-            <li>Shipping projects end-to-end</li>
+            <li data-i18n="strength_1">Analytical thinking & fast learning</li>
+            <li data-i18n="strength_2">Problem solving under time pressure</li>
+            <li data-i18n="strength_3">Comfortable with debugging and profiling</li>
+            <li data-i18n="strength_4">Shipping projects end-to-end</li>
           </ul>
         </div>
       </div>
     </section>
 
     <section class="card reveal reveal-delay-3">
-      <h2>Skills</h2>
+      <h2 data-i18n="skills_title">Skills</h2>
 
       <div class="chips" role="list">
-        <span class="chip strong" role="listitem">Python (main)</span>
-        <span class="chip" role="listitem">Linux (confident)</span>
-        <span class="chip" role="listitem">Bash scripting</span>
-        <span class="chip" role="listitem">Git / GitHub</span>
+        <span class="chip strong" role="listitem" data-i18n="skill_python">Python (main)</span>
+        <span class="chip" role="listitem" data-i18n="skill_linux">Linux (confident)</span>
+        <span class="chip" role="listitem" data-i18n="skill_bash">Bash scripting</span>
+        <span class="chip" role="listitem" data-i18n="skill_git">Git / GitHub</span>
 
-        <span class="chip" role="listitem">C++ (fundamentals + practice)</span>
-        <span class="chip" role="listitem">Algorithms & data structures</span>
+        <span class="chip" role="listitem" data-i18n="skill_cpp">C++ (fundamentals + practice)</span>
+        <span class="chip" role="listitem" data-i18n="skill_algo">Algorithms & data structures</span>
 
-        <span class="chip" role="listitem">Web: HTML / CSS / JS</span>
-        <span class="chip" role="listitem">REST APIs</span>
-        <span class="chip" role="listitem">SQL basics</span>
+        <span class="chip" role="listitem" data-i18n="skill_web">Web: HTML / CSS / JS</span>
+        <span class="chip" role="listitem" data-i18n="skill_api">REST APIs</span>
+        <span class="chip" role="listitem" data-i18n="skill_sql">SQL basics</span>
 
-        <span class="chip" role="listitem">Automation & parsers</span>
-        <span class="chip" role="listitem">Telegram bots</span>
-        <span class="chip" role="listitem">CLI tools</span>
+        <span class="chip" role="listitem" data-i18n="skill_automation">Automation & parsers</span>
+        <span class="chip" role="listitem" data-i18n="skill_bots">Telegram bots</span>
+        <span class="chip" role="listitem" data-i18n="skill_cli">CLI tools</span>
 
-        <span class="chip" role="listitem">Docker (basic)</span>
-        <span class="chip" role="listitem">Cybersecurity tooling (labs)</span>
+        <span class="chip" role="listitem" data-i18n="skill_docker">Docker (basic)</span>
+        <span class="chip" role="listitem" data-i18n="skill_sec">Cybersecurity tooling (labs)</span>
 
-        <span class="chip" role="listitem">English / Russian</span>
-        <span class="chip" role="listitem">DaVinci Resolve (basic)</span>
+        <span class="chip" role="listitem" data-i18n="skill_langs">English / Russian</span>
+        <span class="chip" role="listitem" data-i18n="skill_video">DaVinci Resolve (basic)</span>
       </div>
 
       <div class="note">
         <span class="dot"></span>
-        <span>Open-source projects and examples are available on my GitHub.</span>
+        <span data-i18n="note_github">Open-source projects and examples are available on my GitHub.</span>
       </div>
     </section>
 
     <section class="card reveal reveal-delay-4">
-      <h2>Certification</h2>
+      <h2 data-i18n="cert_title">Certification</h2>
       <div class="cert">
         <div class="cert-left">
           <div class="cert-title">Building with Claude API</div>
-          <div class="cert-sub">Anthropic • Online</div>
+          <div class="cert-sub" data-i18n="cert_sub">Anthropic • Online</div>
         </div>
-        <p class="cert-desc">
-          API usage, advanced prompting, tool integration, workflow patterns,
-          and building AI-powered features (including RAG and multimodal processing).
+        <p class="cert-desc" data-i18n="cert_desc">
+          API usage, advanced prompting, tool integration, workflow patterns, and building AI-powered features
+          (including RAG and multimodal processing).
         </p>
       </div>
     </section>
@@ -124,7 +135,7 @@
     <footer class="footer reveal reveal-delay-5">
       <span>© <span id="year"></span> Daniil Medov</span>
       <span class="dot-mid">•</span>
-      <span class="muted">MEDOFF / medovi40k</span>
+      <span class="muted" data-i18n="footer_brand">MEDOFF / medovi40k</span>
     </footer>
   </main>
 

@@ -3,15 +3,14 @@
   --bg1:#070a12;
 
   --card: rgba(255,255,255,0.06);
-  --card2: rgba(255,255,255,0.08);
   --border: rgba(255,255,255,0.10);
 
   --text: rgba(255,255,255,0.92);
   --muted: rgba(255,255,255,0.68);
   --muted2: rgba(255,255,255,0.55);
 
-  --accent: #7c5cff;   /* soft violet */
-  --accent2:#22d3ee;   /* soft cyan */
+  --accent: #7c5cff;
+  --accent2:#22d3ee;
 
   --shadow: 0 12px 40px rgba(0,0,0,0.45);
   --radius: 18px;
@@ -31,7 +30,6 @@ body{
   overflow-x:hidden;
 }
 
-/* canvas background */
 #bg{
   position:fixed;
   inset:0;
@@ -41,7 +39,6 @@ body{
   display:block;
 }
 
-/* layout */
 .wrap{
   width:min(980px, 92vw);
   margin: clamp(20px, 6vh, 64px) auto;
@@ -50,7 +47,6 @@ body{
   gap: 14px;
 }
 
-/* header */
 .header{
   padding: 26px 24px 18px;
   border: 1px solid var(--border);
@@ -73,10 +69,18 @@ body{
   opacity:0.9;
 }
 
+.top-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  position:relative;
+  z-index:1;
+}
+
 .badge{
   display:inline-flex;
   align-items:center;
-  gap:8px;
   padding: 6px 10px;
   border-radius: 999px;
   border:1px solid rgba(255,255,255,0.14);
@@ -85,9 +89,72 @@ body{
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.78);
-  position:relative;
-  z-index:1;
+  white-space:nowrap;
 }
+
+/* --- Slider language switch --- */
+.lang-switch{
+  position: relative;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  width: 112px;
+  padding: 4px;
+  border-radius: 999px;
+  border:1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  overflow:hidden;
+}
+
+.lang-opt{
+  position: relative;
+  z-index: 2;
+  appearance:none;
+  border:0;
+  cursor:pointer;
+  padding: 7px 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255,255,255,0.74);
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  transition: color .18s ease, transform .18s ease;
+}
+
+.lang-opt:hover{ transform: translateY(-1px); }
+
+.lang-switch[data-lang="en"] .lang-opt[data-lang="en"],
+.lang-switch[data-lang="ru"] .lang-opt[data-lang="ru"]{
+  color: rgba(255,255,255,0.92);
+}
+
+.lang-pill{
+  position:absolute;
+  z-index:1;
+  top: 4px;
+  left: 4px;
+
+  /* ключевой фикс: учитываем padding (4px слева + 4px справа = 8px) */
+  width: calc((100% - 8px) / 2);
+  height: calc(100% - 8px);
+
+  border-radius: 999px;
+  box-sizing: border-box;
+
+  background:
+    radial-gradient(120px 60px at 20% 30%, rgba(124,92,255,0.20), transparent 70%),
+    radial-gradient(120px 60px at 80% 70%, rgba(34,211,238,0.14), transparent 70%),
+    rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+
+  transform: translateX(0);
+  transition: transform .28s cubic-bezier(.2,.9,.2,1);
+}
+
+.lang-switch[data-lang="ru"] .lang-pill{
+  transform: translateX(100%);
+}
+/* --- end switch --- */
 
 .title{
   margin: 14px 0 6px;
@@ -139,7 +206,6 @@ body{
   z-index:1;
 }
 
-/* buttons */
 .links{
   display:flex;
   flex-wrap:wrap;
@@ -186,7 +252,6 @@ body{
   color: rgba(255,255,255,0.80);
 }
 
-/* cards */
 .card{
   padding: 20px 20px;
   border: 1px solid var(--border);
@@ -244,7 +309,6 @@ body{
   font-size: 14px;
 }
 
-/* chips */
 .chips{
   display:flex;
   flex-wrap:wrap;
@@ -274,7 +338,6 @@ body{
     rgba(255,255,255,0.04);
 }
 
-/* note line */
 .note{
   display:flex;
   align-items:center;
@@ -296,7 +359,6 @@ body{
   opacity: 0.9;
 }
 
-/* certification */
 .cert{
   display:flex;
   flex-direction:column;
@@ -326,7 +388,6 @@ body{
   font-size: 14px;
 }
 
-/* footer */
 .footer{
   display:flex;
   justify-content:center;
@@ -357,14 +418,13 @@ body.loaded .reveal{
 .reveal-delay-4{ transition-delay: .34s; }
 .reveal-delay-5{ transition-delay: .42s; }
 
-/* responsive */
 @media (max-width: 760px){
   .grid{ grid-template-columns: 1fr; }
   .header{ padding: 22px 18px 16px; }
   .card{ padding: 18px; }
+  .top-row{ align-items:flex-start; }
 }
 
-/* accessibility */
 @media (prefers-reduced-motion: reduce){
   *{ animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .reveal{ opacity: 1 !important; transform: none !important; }
